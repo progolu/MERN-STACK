@@ -22,8 +22,8 @@ app.use((req, res, next)=>{
 // app.get('/', (req, res) => {
 //     res.json({msg: 'Welcome to the application'})
 // })
-app.use('https://mern-stack-steel.vercel.app/api/workouts', workoutRoutes)
-app.use('https://mern-stack-steel.vercel.app/api/blog', blogRoutes)
+app.use('/api/workouts', workoutRoutes)
+app.use('/api/blog', blogRoutes)
 
 
 //connect to db
