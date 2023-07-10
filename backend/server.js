@@ -19,32 +19,38 @@ app.use(express.json())
 // app.use(logger("dev"))
 // app.use(express.json())
 // app.use(express.urlencoded({ extended: false }))
-app.use(cors())
+app.use(cors({
+    origin: [""],
+    method: ["POST", "GET"],
+    credentials: true
+}))
 app.use((req, res, next) => {
     console.log(req.path, req.method)
     next()
 })
 
 //routes
-// app.get('/', (req, res) => {
-//     res.json({msg: 'Welcome to the application'})
-// })
+app.get('/', (req, res) => {
+    res.json({msg: 'Welcome to the application'})
+})
 app.use('/api/workouts', workoutRoutes)
 app.use('/api/blog', blogRoutes)
 
+mongoose.connect('mongodb+srv://patoBiden:patoBiden@cluster0.hf4wu.mongodb.net/?retryWrites=true&w=majority');
 
-app.use(express.static(path.join(__dirname, "./frontend/build")))
 
-app.get("*", function (_, res) {
-    res.sendFile(
-        path.join(__dirname, "./frontend/build/index.html"),
-        function (err) {
-            if (err) {
-                res.status(500).send(err)
-            }
-        }
-    )
-})
+// app.use(express.static(path.join(__dirname, "./frontend/build")))
+
+// app.get("*", function (_, res) {
+//     res.sendFile(
+//         path.join(__dirname, "./frontend/build/index.html"),
+//         function (err) {
+//             if (err) {
+//                 res.status(500).send(err)
+//             }
+//         }
+//     )
+// })
 
 //connect to db
 mongoose.connect(process.env.MONGO_URI)
