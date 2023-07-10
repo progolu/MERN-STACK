@@ -20,7 +20,7 @@ app.use(express.json())
 // app.use(express.json())
 // app.use(express.urlencoded({ extended: false }))
 app.use(cors({
-    origin: ["https://mern-stack-mu.vercel.app"],
+    origin: ["https://mern-stack-api-bice.vercel.app"],
     method: ["POST", "GET"],
     credentials: true
 }))
